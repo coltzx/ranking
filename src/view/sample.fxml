@@ -18,7 +18,7 @@
             <children>
                 <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="792.0">
                     <children>
-                        <Label alignment="TOP_LEFT" text="城南学院交通土建系结构设计大赛">
+                        <Label alignment="TOP_LEFT" text="城南学院结构设计大赛">
                             <font>
                                 <Font name="System Bold" size="40.0" />
                             </font>
