@@ -17,31 +17,50 @@ public class RankingDao {
 
     ResultSet rs = null;
 
-    public int addRank(Model model){
+    public int addRank(Model model) {
         int num = 0;
         conn = ConnDB.openConn();
 
         try {
-            String sql = "insert into main(name,a,b,g,h,c,d) values(?,?,?,?,?,?,?)";
+            String sql = "insert into main(id,name,a,b,g,h,c,d) values(?,?,?,?,?,?,?,?)";
             ps = conn.prepareStatement(sql);
-            ps.setString(1,model.getName());
-            ps.setDouble(2,model.getA());
-            ps.setDouble(3, model.getB());
-            ps.setDouble(4, model.getG());
-            ps.setDouble(5,model.getH());
-            ps.setInt(6,model.getC());
-            ps.setInt(7,model.getD());
+            ps.setInt(1, model.getId());
+            ps.setString(2, model.getName());
+            ps.setDouble(3, model.getA());
+            ps.setDouble(4, model.getB());
+            ps.setDouble(5, model.getG());
+            ps.setDouble(6, model.getH());
+            ps.setInt(7, model.getC());
+            ps.setInt(8, model.getD());
 
             num = ps.executeUpdate();
         } catch (Exception throwables) {
             throwables.printStackTrace();
         } finally {
-            ConnDB.closeDB(rs,ps,conn);
+            ConnDB.closeDB(rs, ps, conn);
         }
         return num;
     }
 
-    public List<Model> doRank(){
+    public int updateRank(Model model) {
+        int num = 0;
+        conn = ConnDB.openConn();
+        try {
+            String sql = "update main set c=?,d=? where id=?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, model.getC());
+            ps.setInt(2, model.getD());
+            ps.setInt(3, model.getId());
+            num = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnDB.closeDB(rs, ps, conn);
+        }
+        return num;
+    }
+
+    public List<Model> doRank() {
 
         List<Model> list = new ArrayList<Model>();
 
@@ -54,7 +73,7 @@ public class RankingDao {
 
             rs = ps.executeQuery();
 
-            while(rs.next()){
+            while (rs.next()) {
 
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
@@ -62,6 +81,7 @@ public class RankingDao {
                 double b = rs.getDouble("b");
                 double g = rs.getDouble("g");
                 double h = rs.getDouble("h");
+                double i = rs.getDouble("i");
                 int c = rs.getInt("c");
                 int d = rs.getInt("d");
 
@@ -74,6 +94,7 @@ public class RankingDao {
                 model.setH(h);
                 model.setC(c);
                 model.setD(d);
+                model.setI(i);
 
                 list.add(model);
             }
@@ -81,25 +102,24 @@ public class RankingDao {
             e.printStackTrace();
         } finally {
 
-            ConnDB.closeDB(rs,ps,conn);
+            ConnDB.closeDB(rs, ps, conn);
         }
         return list;
     }
 
-    public int addI(Model model){
+    public int addI(Model model) {
         int num = 0;
         conn = ConnDB.openConn();
-
         try {
-            String sql = "insert into main(i) values(?)";
+            String sql = "update main set i=? where id=?";
             ps = conn.prepareStatement(sql);
-            ps.setDouble(1,model.getI());
-
+            ps.setDouble(1, model.getI());
+            ps.setInt(2, model.getId());
             num = ps.executeUpdate();
-        } catch (Exception throwables) {
-            throwables.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-            ConnDB.closeDB(rs,ps,conn);
+            ConnDB.closeDB(rs, ps, conn);
         }
         return num;
     }

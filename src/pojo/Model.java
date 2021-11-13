@@ -1,9 +1,9 @@
 package pojo;
 
-public class Model {
+public class Model implements Comparable<Model>{
     int id,c,d;
     String name;
-    double score,a,b,g,h,i;
+    double a,b,g,h,i;
 
     public int getId() {
         return id;
@@ -35,14 +35,6 @@ public class Model {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getScore() {
-        return score;
-    }
-
-    public void setScore(double score) {
-        this.score = score;
     }
 
     public double getA() {
@@ -92,12 +84,16 @@ public class Model {
                 ", c=" + c +
                 ", d=" + d +
                 ", name='" + name + '\'' +
-                ", score=" + score +
                 ", a=" + a +
                 ", b=" + b +
                 ", g=" + g +
                 ", h=" + h +
                 ", i=" + i +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Model o) {
+        return (int) (this.i-o.i);
     }
 }
