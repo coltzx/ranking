@@ -84,7 +84,7 @@ public class DataToExcel {
         }
 
         // 创建一个文件
-        File file = new File("D:/ranking.xls");
+        File file = new File("./RANKING.xls");
         try {
             file.createNewFile();
             // 打开文件流

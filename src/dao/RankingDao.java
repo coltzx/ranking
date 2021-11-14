@@ -123,4 +123,25 @@ public class RankingDao {
         }
         return num;
     }
+
+    public int delRank(int id){
+        int num = 0;
+
+        conn = ConnDB.openConn();
+        try {
+
+            String sql = "delete from main where id=?";
+
+            ps = conn.prepareStatement(sql);
+
+            ps.setInt(1,id);
+
+            num = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnDB.closeDB(rs,ps,conn);
+        }
+        return num;
+    }
 }

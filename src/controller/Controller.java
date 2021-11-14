@@ -27,12 +27,6 @@ public class Controller {
     @FXML
     private TextField idTextField;
     @FXML
-    private TableColumn<Model,Integer> rankTableColumn;
-    @FXML
-    private TableColumn<Model,String> teamTableColumn;
-    @FXML
-    private TableColumn<Model,Double> scoreTableColumn;
-    @FXML
     private CheckBox cCheckBox;
     @FXML
     private CheckBox dCheckBox;
@@ -40,8 +34,6 @@ public class Controller {
     private RadioButton inRadioButton;
     @FXML
     private RadioButton rankRadioButton;
-    @FXML
-    private TableView<Model> rankingTableView;
 
     public void do_subButton_event(ActionEvent event) {
         double a;
@@ -74,6 +66,9 @@ public class Controller {
             model.setD(d);
 
             num = rankingDao.addRank(model);
+
+            if (num == 1) System.out.println("Input successfully!");
+            else System.out.println("Input failed!");
         }
 
         if (rankRadioButton.isSelected()) {
@@ -82,11 +77,9 @@ public class Controller {
             model.setD(d);
 
             num = rankingDao.updateRank(model);
+            if (num == 1) System.out.println("Judging success!");
+            else System.out.println("Judging failed!");
         }
-
-        if (num == 1) System.out.println("成");
-        else System.out.println("败");
-
     }
 
     public void do_rankButton_event(ActionEvent event) {
@@ -143,12 +136,13 @@ public class Controller {
             model.setI(i);
 
             int num = rankingDao.addI(model);
-            System.out.println(num);
+            if(num == 1)
+            System.out.println("The total score of the "+id+" group is calculated successfully");
         }
-
-        System.out.println(baMax);
-        System.out.println(bMax);
-
+        System.out.println("");
+        System.out.println("(b/a)Max is "+baMax);
+        System.out.println("bMax is "+bMax);
+        System.out.println("");
         Rlist = rankingDao.doRank();
         Collections.sort(Rlist);
         Collections.reverse(Rlist);
@@ -166,7 +160,11 @@ public class Controller {
     }
 
     public void do_delButton_event(ActionEvent event) {
-
+        RankingDao rankingDao = new RankingDao();
+        Model model = new Model();
+        int id = Integer.parseInt(idTextField.getText());
+        int num = rankingDao.delRank(id);
+        if (num == 1) System.out.println(id+" group deleted successfully");
     }
 
 }

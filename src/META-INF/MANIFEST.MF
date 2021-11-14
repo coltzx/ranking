@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: sample.Main
+Class-Path: mysql-connector-java-8.0.26.jar poi-4.1.0.jar commons-io-2.1
+ 1.0.jar javafx-swt.jar javafx.web.jar javafx.base.jar javafx.fxml.jar j
+ avafx.media.jar javafx.swing.jar javafx.controls.jar javafx.graphics.ja
+ r
+

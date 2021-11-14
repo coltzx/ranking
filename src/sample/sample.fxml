@@ -107,7 +107,7 @@
                         <children>
                             <Button fx:id="subButton" alignment="CENTER" mnemonicParsing="false" onAction="#do_subButton_event" text="提交" />
                             <Button fx:id="rankButton" mnemonicParsing="false" onAction="#do_rankButton_event" prefHeight="19.0" prefWidth="40.0" text="排名" />
-                            <Button fx:id="delButton" mnemonicParsing="false" text="删除" />
+                            <Button fx:id="delButton" mnemonicParsing="false" onAction="#do_delButton_event" text="删除" />
                         </children>
                         <padding>
                             <Insets left="50.0" />
