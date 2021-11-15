@@ -98,7 +98,7 @@ public class Controller {
             double ba = (b / a);
 
             if (b > bMax && c == 1 && d == 1)
-                bMax = Rlist.get(k).getB();
+                bMax = b;
 
             if (ba > baMax && c == 1 && d == 1)
                 baMax = ba;
@@ -144,10 +144,18 @@ public class Controller {
         System.out.println("bMax is "+bMax);
         System.out.println("");
         Rlist = rankingDao.doRank();
-        Collections.sort(Rlist);
+        //Collections.sort(Rlist);
+
+        Collections.sort(Rlist, new Comparator<Model>() {
+            @Override
+            public int compare(Model o1, Model o2) {
+                return new Double(o1.getI()).compareTo(new Double(o2.getI()));
+            }
+        });
+
         Collections.reverse(Rlist);
         exportExcelPaper(Rlist);
-
+        System.out.println("Ranking completed!");
         //System.out.println(Rlist.toString());
 
 

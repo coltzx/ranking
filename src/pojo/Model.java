@@ -1,6 +1,6 @@
 package pojo;
 
-public class Model implements Comparable<Model>{
+public class Model{
     int id,c,d;
     String name;
     double a,b,g,h,i;
@@ -90,10 +90,5 @@ public class Model implements Comparable<Model>{
                 ", h=" + h +
                 ", i=" + i +
                 '}';
-    }
-
-    @Override
-    public int compareTo(Model o) {
-        return (int) (this.i-o.i);
     }
 }
